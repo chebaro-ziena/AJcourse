@@ -22,13 +22,27 @@ public class Revision {
        for(int i=0;i<nm;i++){
           
        System.out.println("Enter the name of movie "+(i+1));
-       String s=x.next();
+       String s=x.nextLine();
        Movies[i]=s;
-              
+            x.close();
        }
-         System.out.println("Enter the number of attendees:");
-         int NumberOfAttendees =x.nextInt();
+        
+       System.out.println("Enter the number of attendees:");
+   try{
+       
+         public int NumberOfAttendees =x.nextInt();
+         
+  
+          if(NumberOfAttendees<0 ||NumberOfAttendees >100  ){
+           throw new InValidNumberException("not a valid number");
+   }
+   } catch(InValidNumberException e){
+           System.out.println(e.getmessage());
+           }
+        
+   
     
+     
          for(int f=0;f<NumberOfAttendees;f++){
          System.out.println("Welcome to Cinema Critics!");
          int [] Ratings = new int[nm];
