@@ -3,7 +3,7 @@ package datasfall2021;
 
 /**
  *
- * @author zeina chebaro
+ * @author DELL
  */
 public class DataSfall2021 {
    public static boolean check = false;
@@ -18,8 +18,9 @@ public class DataSfall2021 {
            System.out.println(value+"is found");
        
   
-           else 
+           
+           if(check=false) 
        
 
            System.out.println(value+"is not found");
-       }}
+       }}}
