@@ -9,9 +9,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -35,13 +38,18 @@ public class JavafxLab3 extends Application {
      // p.setPadding(new Insets(5));
     //  p.setBackground(Background.EMPTY);
    //   p.getChildren().add(creatText());
-      
+      Label[] labels=[new Label("computer science"), new Label("ccs"),new Label("engineering")];
+        for(Label Label : labels){
+           Label.setRotate(20);
+           HBox hb=new HBox(10);
+           hb.getChildren().add(Label);
+        }
       
       primaryStage.show();
      // p.getChildren().add(createImageView());
         VBox vb=new VBox(10);
         vb.setStyle("-fx-bachground-color:red");
-        vb.getChildren().addAll(creatText(),createImageView());
+        vb.getChildren().addAll(creatText(),createImageView(),hb);
         vb.setPadding(new Insets(30));
         vb.setAlignment(Pos.CENTER);
       Scene s=new Scene(vb, 400,400);
@@ -69,6 +77,7 @@ public class JavafxLab3 extends Application {
     }
         
         
+}
    
 
     
