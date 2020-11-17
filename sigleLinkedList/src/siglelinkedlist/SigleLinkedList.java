@@ -179,6 +179,30 @@ import java.util.Scanner;
             return true;
             
     }
+//    public void Add(int pos,Object ob){
+//    
+//         int s = SigleLinkedList.size();
+//        if(pos<0 || pos> s)
+//             throw new RuntimeException("wrong position, try a position less than "+s);
+//        if (pos == 0) {
+//           Node t=head ; 
+//           head= new Node(ob);
+//           head.setNext(t);
+//           
+//        }
+//                else{
+//            Node currentNode = this.head;
+//            
+//            for (int y = 0; y < s - 1; y++) {
+//                currentNode = currentNode.getNext();
+//            }
+//           
+//            Node t= currentNode.getNext();
+//            currentNode=new Node(ob);
+//            currentNode.setNext(t);}
+//    
+    
+    
    
     
          public static void main(String[] args) {
@@ -189,7 +213,7 @@ import java.util.Scanner;
         myFamily.add("MotherInLaw");
         System.out.println(myFamily.size());
 
-      1  myFamily.remove("MotherInLaw"); 
+        myFamily.remove("MotherInLaw"); 
         System.out.println(myFamily.size());
         myFamily.add("BabyElias");
         System.out.println(myFamily.indexOf("BabyElias"));
@@ -203,8 +227,9 @@ import java.util.Scanner;
         mySecondFamily.add("mahmoud");
         
         myFamily.merge(mySecondFamily);
+        
       System.out.println(myFamily.size());
-      myFamily.replace("mohammad","mahmod");
+      System.out.println(myFamily.toString());
      }
      
     public void merge(SigleLinkedList a2){
