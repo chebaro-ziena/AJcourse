@@ -9,7 +9,7 @@ import java.util.List;
  */
 public abstract class Arraylist implements List<Object> {
 
-   List[] A = new Arraylist[10];
+   Object[] A = new Object[10];
   
 
     @Override
@@ -37,7 +37,7 @@ public abstract class Arraylist implements List<Object> {
     public boolean add(Object e) {
         // 1- create an array that is one item bigger than the current array
 
-        final Object T[]  = new Arraylist[A.length + 1];
+        final Object T[]  = new Object[A.length + 1];
 
         // 2- copy previous elements in their right order
         for (int i = 0; i < A.length; i++) {
@@ -46,7 +46,7 @@ public abstract class Arraylist implements List<Object> {
 
         // 3- add the new item given in parameter at the end of the new array
         T[A.length] = e;
-
+        A=T;
         
         return true;
     }
@@ -77,10 +77,10 @@ public abstract class Arraylist implements List<Object> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void add(int index, Object element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   // @Override i did it in the end and call it insert
+   // public void add(int index, Object element) {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
 
     @Override
     public Object remove(int index) {
@@ -89,9 +89,9 @@ public abstract class Arraylist implements List<Object> {
         }
 
         // 1- create a new array that is 1 item smaller
-        Object T[]  =  new Arraylist[A.length - 1];
+        Object T[]  =  new Object[A.length - 1];
 
-        for (int i = 0; i < A.length; i++) {
+        for (int i = 0; i < A.length-1; i++) {
             if (i < index) {
                 // 2- copy all the item up until index-1 from old to same position in new
                 T[i] = A[i];
@@ -101,6 +101,7 @@ public abstract class Arraylist implements List<Object> {
                 T[i - 1] = A[i];
             }
         }
+        A=T;
         Object removedItem = A[index];
         
         // 5- return the removed item
@@ -116,4 +117,69 @@ public abstract class Arraylist implements List<Object> {
     }
         // throws new Exception("the element does not exist");
     return -1;
-}}
+}
+    public void insert(int index, Object newElement){
+        
+     if (index >= size() || index < 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    
+        Object[] newarray =new Object[A.length + 1];
+        
+        newarray[index]=newElement;
+        for(int i=0;i<newarray.length;i++){
+        
+            if(i<index)
+                newarray[i]=A[i];
+           
+            if(i>=index)
+                newarray[i+1]=A[i];
+        }
+    
+          A= newarray;
+    }
+     public boolean replace(Object oldElement, Object newElement){
+     
+         if(this.contains(oldElement)){
+         Object[] newarray =new Object[A.length];
+         for(int i=1;i<newarray.length;i++){
+            if (!A[i].equals(oldElement)) {
+              newarray[i] = A[i];
+            }
+            newarray[i]=newElement;
+            
+    }
+         A=newarray;
+         return true;
+         }
+             return false;
+     
+     }
+     public void replace(int index, Object newElement){
+         
+      if (index >= size() || index < 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+     
+       Object[] newarray =new Object[A.length];
+        
+        newarray[index]=newElement;
+         for(int i=0;i<newarray.length;i++){
+        
+            while(i!=index)
+                newarray[i]=A[i];
+     
+        }
+    
+          A= newarray;
+            }
+        
+    
+     
+     
+     }
+     
+
+
+
+
