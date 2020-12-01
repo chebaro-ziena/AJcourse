@@ -111,14 +111,23 @@ public class CDLL implements DLLInterface {
             this.head = this.tail = new CDLLNode(newElement);
             //or this.head.setValue(newElement);
         } else {
-            if(size==2) //which means there is two nodes head and tail
+            if(size==1) //which means there is two nodes head and tail
             { CDLLNode nodeToAdd = new CDLLNode(newElement);
+              nodeToAdd.setPrevios(tail);
+              nodeToAdd.setNext(tail);
+              head=nodeToAdd;
+
+            }
+            if(size==2){
+              CDLLNode nodeToAdd = new CDLLNode(newElement);
               nodeToAdd.setPrevios(head);
               nodeToAdd.setNext(tail);
               head.setNext(nodeToAdd);
               head.setPrevios(tail);
               tail.setNext(this.head);
               tail.setPrevios(nodeToAdd);
+              
+            
             }
             if(size>2)
             { CDLLNode nodeToAdd = new CDLLNode(newElement);
