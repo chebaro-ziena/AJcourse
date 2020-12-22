@@ -13,26 +13,59 @@ import java.util.Scanner;
  */
 public class recursiveSLL <T>{
     Node head;
-      public Node add(Node head,T newElement){
+      public Node add(Node newElement){
     
         if(head== null)
-        { head= new Node(newElement);}
+        {return head= new Node(newElement);}
+         
+        
         else{
-         head.setNext(add(head.getNext(),newElement));   
-    }return head;
-    }
+        return this.add(newElement,head);   
+        
+    }}
+      
+      public Node add(Node element,Node currentnode){
+      
+          if(currentnode.getNext()==null){
+              currentnode.setNext(new Node (element));
+               return element;}
+          return this.add(element,currentnode.getNext());
+      }
        public boolean isEmpty() {
         return this.head == null;
     }
-      public int size(Node head,int count) {
-        if (isEmpty()) {
+       public int sise(){
+       return size(head);
+       }
+      public int size(Node current) {
+        if (isEmpty()||current.getNext()==null) {
             return 0;
      
         } else {
-               size(head,count);
-                count++;
-            }
-            return count;
+              int size=size(current.getNext());
+                
+            
+            return 1+ size;}
         }
+
+      public T get(int index){
+      return get(head,index);
+      
+      }
+      public T get (Node currentnode,int index){
+        if (index < 0 || index > size()) {
+            throw new ArrayIndexOutOfBoundsException();
+        } else if (isEmpty()) {
+            throw new RuntimeException("Cannot fetch node, list is empty!");
+        } else {
+      
+      }
+              
+              
+}
+
+    private int size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
