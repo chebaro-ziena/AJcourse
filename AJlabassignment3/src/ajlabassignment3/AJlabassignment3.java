@@ -24,6 +24,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -37,20 +38,23 @@ import javafx.util.Duration;
  */
 public class AJlabassignment3 extends Application {
     static int count=0;
+    Assignment2LabAJ s = new Assignment2LabAJ();
+    login l = new login();
     @Override
+    
     public void start(Stage primaryStage) {
-       
+        Pane  p = new Pane();
         Label b1 = new Label("welcom to this website !");
         b1.setTextFill(javafx.scene.paint.Color.SALMON);
 	b1.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 12d));
         Button b=new Button("Sign Up");
         b.setAlignment(Pos.BOTTOM_RIGHT);
         b.setTextFill(Color.WHITE);
-        b.setOnAction(e->{ primaryStage.setScene(scene2);
+        b.setOnAction(e->{ primaryStage.setScene(s.scene2 );
         });
         
         Button b2=new Button("sign in");
-        b2.setOnAction(e->{ primaryStage.setScene(scene1);
+        b2.setOnAction(e->{ primaryStage.setScene(l.scene1);
         });
         GridPane gp= new GridPane();
         gp.setPadding(new Insets(20));
@@ -76,49 +80,40 @@ public class AJlabassignment3 extends Application {
     
    
                   
-        ImageView[] imgView = new ImageView[4];
-        ObservableList<ImageView> imges = FXCollections.observableArrayList(imgView);
+        ImageView imgView = new ImageView();
+        Image [] images = new Image[5];
        
-        imgView[0] = new ImageView(new  Image("file:///C://Users//DELL//Desktop//slide9.jpg"));
-        imgView[1] = new ImageView(new Image("‪file:///C://Users//DELL//Desktop//slide4.jpg"));
-        imgView[2] = new ImageView(new Image("‪file:///C://Users//DELL//Desktop//slide8.jpg"));
-        imgView[3] = new ImageView(new Image("file:///C://Users//DELL//Desktop//slide4 (1).jpg"));
-        imgView[4] = new ImageView(new Image("file:///C://Users//DELL//Desktop//slide0.jpg"));
+        images[0] = new Image("file:///C://Users//DELL//Desktop//slide9.jpg");
+        images[1] = new Image("‪file:///C://Users//DELL//Desktop//slide4.jpg");
+        images[2] = new Image("‪file:///C://Users//DELL//Desktop//slide8.jpg");
+        images[3] = new Image("file:///C://Users//DELL//Desktop//slide4.jpg");
+        images[4] = new Image("file:///C://Users//DELL//Desktop//slide0.jpg");
         
         Timeline t= new Timeline(new KeyFrame(Duration.millis(2000),e->{
-        if (count < 4) {
-                // Adding Children
-               gp.getChildren().remove(imgView[count]);
-                count++;
-                gp.getChildren().add(imgView[count]);}
-          else if (count== 4) {
-                count= 0;
-                gp.getChildren().remove(imgView[4]);
-                gp.getChildren().add(imgView[count]);
-          }}));
+       
+                
+               imgView.setImage(images[(count++)%5]);
+         
+          }));
         t.setCycleCount(Timeline.INDEFINITE);
         t.play();
-          gp.getChildren().add(imgView[count]);
          
-         BackgroundImage bgImg = new BackgroundImage(imges, 
-                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                 BackgroundPosition.DEFAULT, 
-    new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
-
+         
+       
          gp.setOnMouseClicked(e -> {
-            if (t.getStatus() ==  Animation.Status.PAUSED) {
-                t.play();
-            } else 
+            if (t.getStatus() ==  Animation.Status.RUNNING) {
                 t.pause();
+            } else 
+                t.play();
     });
-        
-        
-        
-        
         
        
         
-        Scene mainscene = new Scene(gp, 300, 300);
+        
+        
+       p.getChildren().addAll(gp,imgView);
+        
+        Scene mainscene = new Scene(p, 300, 300);
         
         primaryStage.setTitle("login for an account !");
         primaryStage.setScene(mainscene);
